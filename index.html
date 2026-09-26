@@ -4,106 +4,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA AI APP</title>
-    <meta name="description" content="NOVA AI APP - حوّل فكرتك إلى تطبيق بالذكاء الاصطناعي">
-</head>
 
-<body>
+    <title>NOVA AI — منصة بناء التطبيقات بالذكاء الاصطناعي</title>
 
-    <header>
-        <div class="logo">
-            NOVA AI
-        </div>
+    <meta
+        name="description"
+        content="NOVA AI منصة ذكية لتحويل أفكارك النصية إلى تطبيقات ومشاريع جاهزة."
+    >
 
-        <nav>
-            <a href="#home">الرئيسية</a>
-            <a href="#features">المميزات</a>
-            <a href="#projects">المشاريع</a>
-            <a href="#about">عن NOVA</a>
-        </nav>
+    <link rel="stylesheet" href="style.css">
 
-        <button id="loginBtn">
-            تسجيل الدخول
-        </button>
-    </header>
+    <style>
 
-    <main>
+        :root {
+            --bg: #050816;
+            --bg2: #080d20;
+            --card: rgba(15, 23, 48, 0.72);
+            --card2: #0d1430;
+            --border: rgba(120, 140, 220, 0.18);
+            --text: #ffffff;
+            --muted: #9aa6c2;
+            --primary: #7657ff;
+            --primary2: #a855f7;
+            --cyan: #22d3ee;
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+            --shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+        }
 
-        <section id="home">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            <div>
-                <span>⚡ NOVA AI APP BUILDER</span>
+        html {
+            scroll-behavior: smooth;
+        }
 
-                <h1>
-                    حوّل فكرتك
-                    <br>
-                    إلى تطبيق حقيقي
-                </h1>
+        body {
+            font-family:
+                Arial,
+                "Segoe UI",
+                Tahoma,
+                sans-serif;
 
-                <p>
-                    اكتب فكرتك فقط، ودع NOVA يحللها
-                    ويخطط لتطبيقك ويبدأ ببناء المشروع.
-                </p>
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(118, 87, 255, 0.18),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(34, 211, 238, 0.10),
+                    transparent 25%
+                ),
+                var(--bg);
 
-                <div>
-                    <textarea
-                        id="ideaInput"
-                        placeholder="مثال: أنشئ لي تطبيق متجر ملابس يحتوي على المنتجات والسلة وتسجيل الدخول..."
-                    ></textarea>
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-                    <button id="buildBtn">
-                        🚀 ابدأ بناء التطبيق
-                    </button>
-                </div>
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-            </div>
+        button,
+        textarea,
+        input {
+            font-family: inherit;
+        }
 
-        </section>
+        button {
+            cursor: pointer;
+        }
 
-        <section id="features">
+        /* =========================
+           TOP BAR
+        ========================= */
 
-            <h2>ماذا يستطيع NOVA أن يفعل؟</h2>
+        .topbar {
+            height: 34px;
 
-            <div>
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-                <article>
-                    <h3>🤖 ذكاء اصطناعي</h3>
-                    <p>
-                        تحليل فكرتك وتحويلها إلى خطة مشروع.
-                    </p>
-                </article>
+            background:
+                linear-gradient(
+                    90deg,
+                    #17104a,
+                    #25105c,
+                    #111b49
+                );
 
-                <article>
-                    <h3>💻 توليد الكود</h3>
-                    <p>
-                        إنشاء ملفات وكود المشروع تلقائيًا.
-                    </p>
-                </article>
+            color: #d9d4ff;
 
-                <article>
-                    <h3>👁️ معاينة مباشرة</h3>
-                    <p>
-                        مشاهدة التطبيق أثناء بنائه وتطويره.
-                    </p>
-                </article>
+            font-size: 13px;
 
-                <article>
-                    <h3>📦 مشروع جاهز</h3>
-                    <p>
-                        تجهيز ملفات المشروع للاستخدام والتطوير.
-                    </p>
-                </article>
+            border-bottom: 1px solid var(--border);
+        }
 
-            </div>
+        /* =========================
+           NAVBAR
+        ========================= */
 
-        </section>
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 999;
 
-        <section id="projects">
+            height: 76px;
 
-            <h2>مشاريعك</h2>
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-            <div id="projectsList">
-                <p>
-                    لم يتم إنشاء مشاريع بعد.
-                </p>
+            padding: 0 6%;
+
+            background:
+                rgba(5, 8, 22, 0.78);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(22px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary2)
+                );
+
+            box-shadow:
+                0 0 30px rgba(118, 87, 255, 0.35);
+
+            font-size: 21px;
+        }
+
+        .brand-text {
+            font-size: 21px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .brand-text span {
+            color: #9b87ff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            color: #b8c1d9;
+
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 10px 17px;
+
+            border-radius: 11px;
+
+            background: #10172f;
+
+            border: 1px solid #293454;
+
+            color: white;
+
+            transition: 0.25s;
+        }
+
+        .btn-small:hover {
+            background: #17203e;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            border: 0;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary2)
+                );
+
+            box-shadow:
+                0 10px 35px rgba(118, 87, 255, 0.25);
+
+            transition: 0.25s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 45px rgba(118, 87, 255, 0.40);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+
+            min-height: 720px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 6% 80px;
+
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(118, 87, 255, 0.20),
+                    transparent 68%
+                );
+
+            filter: blur(10px);
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(118, 87, 255, 0.10);
+
+            border: 1px solid rgba(145, 125, 255, 0.25);
+
+            color: #c6bbff;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #8b7cff;
+
+            box-shadow:
+                0 0 15px #8b7cff;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(
+                    48px,
+                    8vw,
+                    92px
+                );
+
+            line-height: 1.02;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 27px;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #b7a9ff,
+                    #7c5cff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 750px;
+
+            margin: 0 auto 40px;
+
+            color: #9ca8c4;
+
+            font-size: 19px;
+
+            line-height: 1.9;
+        }
+
+        /* =========================
+           BUILDER
+        ========================= */
+
+        .builder {
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 10px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(118, 87, 255, 0.25),
+                    rgba(34, 211, 238, 0.08)
+                );
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .builder-inner {
+            background:
+                rgba(8, 13, 32, 0.96);
+
+            border:
+                1px solid rgba(150, 160, 220, 0.16);
+
+            border-radius: 18px;
+
+            padding: 25px;
+        }
+
+        .builder-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+        }
+
+        .builder-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-weight: bold;
+        }
+
+        .status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #7f8ba7;
+
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow:
+                0 0 12px rgba(34, 197, 94, 0.7);
+        }
+
+        #ideaInput {
 ```
